@@ -147,6 +147,7 @@ namespace RoundSolitareGame.Classes
         }
         #endregion
         #region Methods
+
         #endregion
     }
 }
