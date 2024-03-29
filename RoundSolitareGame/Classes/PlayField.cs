@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoundSolitareGame.Classes
 {
-    internal class PlayField
+    internal abstract class PlayField
     {
         #region Variables
         private string _ID, _Type;
@@ -70,7 +70,7 @@ namespace RoundSolitareGame.Classes
         }
         #endregion
         #region Methods
-
+        public abstract void PlayFieldAction();
         #endregion
     }
 }

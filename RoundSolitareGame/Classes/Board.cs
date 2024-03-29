@@ -13,6 +13,19 @@ namespace RoundSolitareGame.Classes
         #region Variables
         private string _Name, _Description;
         private int _Size, _SideRows, _SideLines, _UpDownLines, _UpDownRows, _MiddleSize;
+        private List<PlayField> _PlayFields;
+
+        public List<PlayField> PlayFields
+        {
+            get
+            {
+                return _PlayFields;
+            }
+            set
+            {
+                _PlayFields = value;
+            }
+        }
 
         public string Name
         {
@@ -150,6 +163,7 @@ namespace RoundSolitareGame.Classes
             this.MiddleSize = 3 * SizeMultiplicator;
             this.UpDownRows = 3 * SizeMultiplicator;
             this.SideLines = 3 * SizeMultiplicator;
+            this.PlayFields = new List<PlayField>();
         }
         #endregion
         #region Methods
@@ -167,8 +181,11 @@ namespace RoundSolitareGame.Classes
                     {
                         if(y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
+                            NormalPlayField playfield = new NormalPlayField("" + y + i);
+                            b.PlayFields.Add(playfield);
                             Button button = new Button();
                             button.Text = "Top_" + y + i;
+                            button.Click += (e, a) => playfield.PlayFieldAction();
                             parent.Controls.Add(button, y, i);
                         }
                     }
@@ -179,22 +196,43 @@ namespace RoundSolitareGame.Classes
                     {
                         if(y < b.SideRows)
                         {
+                            NormalPlayField playfield = new NormalPlayField("" + y + i);
+                            b.PlayFields.Add(playfield);
                             Button button = new Button();
                             button.Text = "Left_" + y + i;
+                            button.Click += (e, a) => playfield.PlayFieldAction();
                             parent.Controls.Add(button, y, i);
 
                         }
                         else if(y >= b.SideRows && y < b.SideRows + b.UpDownRows) 
                         {
-                            Button button = new Button();
-                            button.Text = "Middle_" + y + i;
-                            parent.Controls.Add(button, y, i);
+                            if(y == (b.Size - 1) / 2 && i == (b.Size + 1) / 2)
+                            {
+                                CenterPlayField playfield = new CenterPlayField("" + y + i);
+                                b.PlayFields.Add(playfield);
+                                Button button = new Button();
+                                button.Text = "Middle_" + y + i;
+                                button.Click += (e, a) => playfield.PlayFieldAction();
+                                parent.Controls.Add(button, y, i);
+                            }
+                            else
+                            {
+                                NormalPlayField playfield = new NormalPlayField("" + y + i);
+                                b.PlayFields.Add(playfield);
+                                Button button = new Button();
+                                button.Text = "Middle_" + y + i;
+                                button.Click += (e, a) => playfield.PlayFieldAction();
+                                parent.Controls.Add(button, y, i);
+                            }
 
                         }
                         else if(y <= b.SideRows + b.UpDownRows + b.SideRows && y >= b.SideRows + b.UpDownRows)
                         {
+                            NormalPlayField playfield = new NormalPlayField("" + y + i);
+                            b.PlayFields.Add(playfield);
                             Button button = new Button();
                             button.Text = "Right_" + y + i;
+                            button.Click += (e, a) => playfield.PlayFieldAction();
                             parent.Controls.Add(button, y, i);
                         }
                     }
