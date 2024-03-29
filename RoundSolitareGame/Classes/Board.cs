@@ -159,59 +159,60 @@ namespace RoundSolitareGame.Classes
             TableLayoutPanel parent = new TableLayoutPanel();
             parent.RowCount = b.Size;
             parent.ColumnCount = b.Size;
-            for(int i = 0; i < b.Size; i++)
+            for(int i = 0; i <= b.Size; i++)
             {
-                while(i < b.UpDownLines)
+                if(i < b.UpDownLines)
                 {
-                    for (int y = 0; y < b.Size; y++)
+                    for (int y = 0; y <= b.Size; y++)
                     {
-                        if(y > b.SideRows && y < b.SideRows + b.UpDownRows)
+                        if(y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
                             Button button = new Button();
-                            button.Text = "" + i + y;
-                            parent.Controls.Add(button, i, y);
+                            button.Text = "Top_" + y + i;
+                            parent.Controls.Add(button, y, i);
                         }
                     }
                 }
-                while(i > b.UpDownLines && i < b.UpDownLines +  b.SideLines)
+                else if(i > b.UpDownLines && i <= b.UpDownLines +  b.SideLines)
                 {
                     for(int y = 0; y < b.Size; y++)
                     {
                         if(y < b.SideRows)
                         {
                             Button button = new Button();
-                            button.Text = "" + i + y;
-                            parent.Controls.Add(button, i, y);
+                            button.Text = "Left_" + y + i;
+                            parent.Controls.Add(button, y, i);
 
                         }
-                        else if(y > b.SideRows && y < b.SideRows + b.MiddleSize) 
+                        else if(y >= b.SideRows && y < b.SideRows + b.UpDownRows) 
                         {
                             Button button = new Button();
-                            button.Text = "" + i + y;
-                            parent.Controls.Add(button, i, y);
+                            button.Text = "Middle_" + y + i;
+                            parent.Controls.Add(button, y, i);
 
                         }
-                        else
+                        else if(y <= b.SideRows + b.UpDownRows + b.SideRows && y >= b.SideRows + b.UpDownRows)
                         {
                             Button button = new Button();
-                            button.Text = "" + i + y;
-                            parent.Controls.Add(button, i, y);
+                            button.Text = "Right_" + y + i;
+                            parent.Controls.Add(button, y, i);
                         }
                     }
                 }
-                while(i > b.UpDownLines + b.SideLines)
+                else if(i >= b.UpDownLines + b.SideLines)
                 {
                     for (int y = 0; y < b.Size; y++)
                     {
-                        if (y > b.SideRows && y < b.SideRows + b.UpDownRows)
+                        if (y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
                             Button button = new Button();
-                            button.Text = "" + i + y;
-                            parent.Controls.Add(button, i, y);
+                            button.Text = "Bottom_" + y + i;
+                            parent.Controls.Add(button, y, i);
                         }
                     }
                 }
             }
+            parent.Dock = DockStyle.Fill;
             return parent;
         }
         #endregion
