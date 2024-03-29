@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RoundSolitareGame.Classes
 {
@@ -141,13 +142,78 @@ namespace RoundSolitareGame.Classes
         }
 
         // Int Constructor for simple creation
-        public Board(int Size)
+        public Board(int SizeMultiplicator)
         {
-            this.Size = Size;
+            this.Size = 7 * SizeMultiplicator;
+            this.SideRows = 2 * SizeMultiplicator;
+            this.UpDownLines = 2 * SizeMultiplicator;
+            this.MiddleSize = 3 * SizeMultiplicator;
+            this.UpDownRows = 3 * SizeMultiplicator;
+            this.SideLines = 3 * SizeMultiplicator;
         }
         #endregion
         #region Methods
-        public 
+        public static TableLayoutPanel GeneratePlayField(Board b)
+        {
+
+            TableLayoutPanel parent = new TableLayoutPanel();
+            parent.RowCount = b.Size;
+            parent.ColumnCount = b.Size;
+            for(int i = 0; i < b.Size; i++)
+            {
+                while(i < b.UpDownLines)
+                {
+                    for (int y = 0; y < b.Size; y++)
+                    {
+                        if(y > b.SideRows && y < b.SideRows + b.UpDownRows)
+                        {
+                            Button button = new Button();
+                            button.Text = "" + i + y;
+                            parent.Controls.Add(button, i, y);
+                        }
+                    }
+                }
+                while(i > b.UpDownLines && i < b.UpDownLines +  b.SideLines)
+                {
+                    for(int y = 0; y < b.Size; y++)
+                    {
+                        if(y < b.SideRows)
+                        {
+                            Button button = new Button();
+                            button.Text = "" + i + y;
+                            parent.Controls.Add(button, i, y);
+
+                        }
+                        else if(y > b.SideRows && y < b.SideRows + b.MiddleSize) 
+                        {
+                            Button button = new Button();
+                            button.Text = "" + i + y;
+                            parent.Controls.Add(button, i, y);
+
+                        }
+                        else
+                        {
+                            Button button = new Button();
+                            button.Text = "" + i + y;
+                            parent.Controls.Add(button, i, y);
+                        }
+                    }
+                }
+                while(i > b.UpDownLines + b.SideLines)
+                {
+                    for (int y = 0; y < b.Size; y++)
+                    {
+                        if (y > b.SideRows && y < b.SideRows + b.UpDownRows)
+                        {
+                            Button button = new Button();
+                            button.Text = "" + i + y;
+                            parent.Controls.Add(button, i, y);
+                        }
+                    }
+                }
+            }
+            return parent;
+        }
         #endregion
     }
 }

@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.TopBar = new System.Windows.Forms.ToolStrip();
             this.TopBar_File = new System.Windows.Forms.ToolStripDropDownButton();
             this.TopBar_GenerateGame = new System.Windows.Forms.ToolStripButton();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip1.SuspendLayout();
+            this.MainLayoutParent = new System.Windows.Forms.TableLayoutPanel();
+            this.TopBar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // TopBar
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TopBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TopBar_File,
             this.TopBar_GenerateGame});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.TopBar.Location = new System.Drawing.Point(0, 0);
+            this.TopBar.Name = "TopBar";
+            this.TopBar.Size = new System.Drawing.Size(800, 25);
+            this.TopBar.TabIndex = 0;
+            this.TopBar.Text = "toolStrip1";
             // 
             // TopBar_File
             // 
@@ -67,30 +67,31 @@
             this.TopBar_GenerateGame.Text = "Generate Game";
             this.TopBar_GenerateGame.Click += new System.EventHandler(this.TopBar_GenerateGame_Click);
             // 
-            // tableLayoutPanel1
+            // MainLayoutParent
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(66, 138);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(200, 100);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.MainLayoutParent.ColumnCount = 2;
+            this.MainLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.MainLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.MainLayoutParent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainLayoutParent.Location = new System.Drawing.Point(0, 25);
+            this.MainLayoutParent.Name = "MainLayoutParent";
+            this.MainLayoutParent.RowCount = 1;
+            this.MainLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MainLayoutParent.Size = new System.Drawing.Size(800, 425);
+            this.MainLayoutParent.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.MainLayoutParent);
+            this.Controls.Add(this.TopBar);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.TopBar.ResumeLayout(false);
+            this.TopBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,10 +99,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip TopBar;
         private System.Windows.Forms.ToolStripDropDownButton TopBar_File;
         private System.Windows.Forms.ToolStripButton TopBar_GenerateGame;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel MainLayoutParent;
     }
 }
 
