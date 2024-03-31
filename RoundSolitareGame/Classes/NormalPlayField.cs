@@ -9,12 +9,12 @@ namespace RoundSolitareGame.Classes
 {
     internal class NormalPlayField : PlayField
     {
-        public NormalPlayField(string ID) : base(ID, PlayFieldTypes.Normal, true)
+        public NormalPlayField(string ID, Button Btn) : base(ID, PlayFieldTypes.Normal, true, Btn)
         {
 
         }
 
-        public override void PlayFieldAction()
+        public override void PlayFieldAction(Board b)
         {
             MessageBox.Show("Normal Action");
         }

@@ -22,6 +22,10 @@ namespace RoundSolitareGame
         {
             Board board = new Board(SizeMultiplicator);
             MainLayoutParent.Controls.Add(Board.GeneratePlayField(board), 0, 0);
+            Timer t = new Timer();
+            t.Tick += (e, a) => LBLTimer.Text = board.GetRoundTime.ToString(@"mm\:ss");
+            t.Enabled = true;
+            t.Start();
         }
 
         private void TopBar_GenerateGame_Click(object sender, EventArgs e)

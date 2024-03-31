@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RoundSolitareGame.Classes
 {
@@ -11,6 +12,18 @@ namespace RoundSolitareGame.Classes
         #region Variables
         private string _ID, _Type;
         private bool _Occupied;
+        private Button _Btn;
+        public Button Btn
+        {
+            get
+            {
+                return _Btn;
+            }
+            set
+            {
+                _Btn = value;
+            }
+        }
         public string ID
         {
             get
@@ -62,15 +75,16 @@ namespace RoundSolitareGame.Classes
             this.Occupied = true;
         }
         // Completly Customised 
-        public PlayField(string ID, string Type, bool Occupied)
+        public PlayField(string ID, string Type, bool Occupied, Button Btn)
         {
             this.ID = ID;
             this.Type = Type;
             this.Occupied= Occupied;
+            this.Btn = Btn;
         }
         #endregion
         #region Methods
-        public abstract void PlayFieldAction();
+        public abstract void PlayFieldAction(Board b);
         #endregion
     }
 }

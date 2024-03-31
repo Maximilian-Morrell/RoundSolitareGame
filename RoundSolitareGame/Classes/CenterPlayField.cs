@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,21 @@ namespace RoundSolitareGame.Classes
 {
     internal class CenterPlayField : PlayField
     {
-        public CenterPlayField(string ID) : base(ID, PlayFieldTypes.Center, true)
+        public CenterPlayField(string ID, Button Btn) : base(ID, PlayFieldTypes.Center, true, Btn)
         {
 
         }
 
-        public override void PlayFieldAction()
+        public override void PlayFieldAction(Board b)
         {
-            MessageBox.Show("Center Action");
+            if(!b.Started)
+            {
+                b.StartRound();
+            }
+            else
+            {
+
+            }
         }
     }
 }

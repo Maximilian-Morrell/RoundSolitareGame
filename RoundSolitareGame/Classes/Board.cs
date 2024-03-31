@@ -17,6 +17,14 @@ namespace RoundSolitareGame.Classes
         private bool _Started;
         private List<PlayField> _PlayFields;
 
+        public TimeSpan GetRoundTime
+        {
+            get
+            {
+                return TimeSpan.FromSeconds(_Seconds);
+            }
+        }
+
         public bool Started
         {
             get
@@ -181,6 +189,25 @@ namespace RoundSolitareGame.Classes
         }
         #endregion
         #region Methods
+
+        public void StartRound()
+        {
+            Started = true;
+            Timer timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += (e, a) => CountSeconds();
+            timer.Enabled = true;
+            timer.Start();
+        }
+
+        private void CountSeconds()
+        {
+            if(Started)
+            {
+                _Seconds++;
+            }
+        }
+
         public static TableLayoutPanel GeneratePlayField(Board b)
         {
 
@@ -256,9 +283,10 @@ namespace RoundSolitareGame.Classes
             // Checking if the generated Button is Normal
             if (IsNormal)
             {
-                NormalPlayField playField = new NormalPlayField(ID);
+                NormalPlayField playField = new NormalPlayField(ID, btn);
                 b.PlayFields.Add(playField);
-                btn.Click += (e, a) => playField.PlayFieldAction();
+                btn.Click += (e, a) => playField.PlayFieldAction(b);
+                btn.BackColor = Color.Red;
             }
             else if(IsOutside)
             {
@@ -266,10 +294,10 @@ namespace RoundSolitareGame.Classes
             }
             else
             {
-                CenterPlayField playField = new CenterPlayField(ID);
+                CenterPlayField playField = new CenterPlayField(ID, btn);
                 b.PlayFields.Add(playField);
                 btn.BackColor = Color.Yellow;
-                btn.Click += (e, a) => playField.PlayFieldAction();
+                btn.Click += (e, a) => playField.PlayFieldAction(b);
             }
             return btn;
         }

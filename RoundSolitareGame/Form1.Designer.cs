@@ -33,7 +33,11 @@
             this.TopBar_File = new System.Windows.Forms.ToolStripDropDownButton();
             this.TopBar_GenerateGame = new System.Windows.Forms.ToolStripButton();
             this.MainLayoutParent = new System.Windows.Forms.TableLayoutPanel();
+            this.RightLayoutParent = new System.Windows.Forms.TableLayoutPanel();
+            this.LBLTimer = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
+            this.MainLayoutParent.SuspendLayout();
+            this.RightLayoutParent.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopBar
@@ -72,14 +76,39 @@
             this.MainLayoutParent.ColumnCount = 2;
             this.MainLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.MainLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.MainLayoutParent.Controls.Add(this.RightLayoutParent, 1, 0);
             this.MainLayoutParent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainLayoutParent.Location = new System.Drawing.Point(0, 25);
             this.MainLayoutParent.Name = "MainLayoutParent";
             this.MainLayoutParent.RowCount = 1;
             this.MainLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MainLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 425F));
             this.MainLayoutParent.Size = new System.Drawing.Size(800, 425);
             this.MainLayoutParent.TabIndex = 1;
+            // 
+            // RightLayoutParent
+            // 
+            this.RightLayoutParent.ColumnCount = 1;
+            this.RightLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RightLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RightLayoutParent.Controls.Add(this.LBLTimer, 0, 0);
+            this.RightLayoutParent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RightLayoutParent.Location = new System.Drawing.Point(643, 3);
+            this.RightLayoutParent.Name = "RightLayoutParent";
+            this.RightLayoutParent.RowCount = 2;
+            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.02387F));
+            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.97614F));
+            this.RightLayoutParent.Size = new System.Drawing.Size(154, 419);
+            this.RightLayoutParent.TabIndex = 0;
+            // 
+            // LBLTimer
+            // 
+            this.LBLTimer.AutoSize = true;
+            this.LBLTimer.Location = new System.Drawing.Point(3, 0);
+            this.LBLTimer.Name = "LBLTimer";
+            this.LBLTimer.Size = new System.Drawing.Size(35, 13);
+            this.LBLTimer.TabIndex = 0;
+            this.LBLTimer.Text = "label1";
             // 
             // Form1
             // 
@@ -92,6 +121,9 @@
             this.Text = "Form1";
             this.TopBar.ResumeLayout(false);
             this.TopBar.PerformLayout();
+            this.MainLayoutParent.ResumeLayout(false);
+            this.RightLayoutParent.ResumeLayout(false);
+            this.RightLayoutParent.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,6 +135,8 @@
         private System.Windows.Forms.ToolStripDropDownButton TopBar_File;
         private System.Windows.Forms.ToolStripButton TopBar_GenerateGame;
         private System.Windows.Forms.TableLayoutPanel MainLayoutParent;
+        private System.Windows.Forms.TableLayoutPanel RightLayoutParent;
+        private System.Windows.Forms.Label LBLTimer;
     }
 }
 
