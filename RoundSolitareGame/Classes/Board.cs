@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -12,8 +13,21 @@ namespace RoundSolitareGame.Classes
     {
         #region Variables
         private string _Name, _Description;
-        private int _Size, _SideRows, _SideLines, _UpDownLines, _UpDownRows, _MiddleSize;
+        private int _Size, _SideRows, _SideLines, _UpDownLines, _UpDownRows, _MiddleSize, _Seconds;
+        private bool _Started;
         private List<PlayField> _PlayFields;
+
+        public bool Started
+        {
+            get
+            {
+                return _Started;
+            }
+            set
+            {
+                _Started = value;
+            }
+        }
 
         public List<PlayField> PlayFields
         {
@@ -181,12 +195,8 @@ namespace RoundSolitareGame.Classes
                     {
                         if(y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
-                            NormalPlayField playfield = new NormalPlayField("" + y + i);
-                            b.PlayFields.Add(playfield);
-                            Button button = new Button();
-                            button.Text = "Top_" + y + i;
-                            button.Click += (e, a) => playfield.PlayFieldAction();
-                            parent.Controls.Add(button, y, i);
+                            // Top Buttons
+                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
                         }
                     }
                 }
@@ -196,44 +206,28 @@ namespace RoundSolitareGame.Classes
                     {
                         if(y < b.SideRows)
                         {
-                            NormalPlayField playfield = new NormalPlayField("" + y + i);
-                            b.PlayFields.Add(playfield);
-                            Button button = new Button();
-                            button.Text = "Left_" + y + i;
-                            button.Click += (e, a) => playfield.PlayFieldAction();
-                            parent.Controls.Add(button, y, i);
+                            // Left Buttons
+                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
 
                         }
                         else if(y >= b.SideRows && y < b.SideRows + b.UpDownRows) 
                         {
                             if(y == (b.Size - 1) / 2 && i == (b.Size + 1) / 2)
                             {
-                                CenterPlayField playfield = new CenterPlayField("" + y + i);
-                                b.PlayFields.Add(playfield);
-                                Button button = new Button();
-                                button.Text = "Middle_" + y + i;
-                                button.Click += (e, a) => playfield.PlayFieldAction();
-                                parent.Controls.Add(button, y, i);
+                                // Center Center Button
+                                parent.Controls.Add(CreateButton(b, "" + y + i, false, false), y, i);
                             }
                             else
                             {
-                                NormalPlayField playfield = new NormalPlayField("" + y + i);
-                                b.PlayFields.Add(playfield);
-                                Button button = new Button();
-                                button.Text = "Middle_" + y + i;
-                                button.Click += (e, a) => playfield.PlayFieldAction();
-                                parent.Controls.Add(button, y, i);
+                                // Middle Buttons
+                                parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
                             }
 
                         }
                         else if(y <= b.SideRows + b.UpDownRows + b.SideRows && y >= b.SideRows + b.UpDownRows)
                         {
-                            NormalPlayField playfield = new NormalPlayField("" + y + i);
-                            b.PlayFields.Add(playfield);
-                            Button button = new Button();
-                            button.Text = "Right_" + y + i;
-                            button.Click += (e, a) => playfield.PlayFieldAction();
-                            parent.Controls.Add(button, y, i);
+                            // Right Buttons
+                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
                         }
                     }
                 }
@@ -243,15 +237,41 @@ namespace RoundSolitareGame.Classes
                     {
                         if (y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
-                            Button button = new Button();
-                            button.Text = "Bottom_" + y + i;
-                            parent.Controls.Add(button, y, i);
+                            // Bottom Buttons
+                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
                         }
                     }
                 }
             }
             parent.Dock = DockStyle.Fill;
             return parent;
+        }
+
+        public static Button CreateButton(Board b, string ID, bool IsNormal, bool IsOutside)
+        {
+            Button btn = new Button();
+            btn.Width = 100;
+            btn.Height = 100;
+            btn.Text = "O";
+            // Checking if the generated Button is Normal
+            if (IsNormal)
+            {
+                NormalPlayField playField = new NormalPlayField(ID);
+                b.PlayFields.Add(playField);
+                btn.Click += (e, a) => playField.PlayFieldAction();
+            }
+            else if(IsOutside)
+            {
+                // Code for Outside Playfield
+            }
+            else
+            {
+                CenterPlayField playField = new CenterPlayField(ID);
+                b.PlayFields.Add(playField);
+                btn.BackColor = Color.Yellow;
+                btn.Click += (e, a) => playField.PlayFieldAction();
+            }
+            return btn;
         }
         #endregion
     }
