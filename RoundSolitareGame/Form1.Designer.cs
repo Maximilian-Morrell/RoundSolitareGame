@@ -35,6 +35,7 @@
             this.MainLayoutParent = new System.Windows.Forms.TableLayoutPanel();
             this.RightLayoutParent = new System.Windows.Forms.TableLayoutPanel();
             this.LBLTimer = new System.Windows.Forms.Label();
+            this.LBLMarbels = new System.Windows.Forms.Label();
             this.TopBar.SuspendLayout();
             this.MainLayoutParent.SuspendLayout();
             this.RightLayoutParent.SuspendLayout();
@@ -89,15 +90,16 @@
             // RightLayoutParent
             // 
             this.RightLayoutParent.ColumnCount = 1;
-            this.RightLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.RightLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RightLayoutParent.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.RightLayoutParent.Controls.Add(this.LBLTimer, 0, 0);
+            this.RightLayoutParent.Controls.Add(this.LBLMarbels, 0, 1);
             this.RightLayoutParent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RightLayoutParent.Location = new System.Drawing.Point(643, 3);
             this.RightLayoutParent.Name = "RightLayoutParent";
-            this.RightLayoutParent.RowCount = 2;
-            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.02387F));
-            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.97614F));
+            this.RightLayoutParent.RowCount = 3;
+            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.RightLayoutParent.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.RightLayoutParent.Size = new System.Drawing.Size(154, 419);
             this.RightLayoutParent.TabIndex = 0;
             // 
@@ -106,9 +108,18 @@
             this.LBLTimer.AutoSize = true;
             this.LBLTimer.Location = new System.Drawing.Point(3, 0);
             this.LBLTimer.Name = "LBLTimer";
-            this.LBLTimer.Size = new System.Drawing.Size(35, 13);
+            this.LBLTimer.Size = new System.Drawing.Size(34, 13);
             this.LBLTimer.TabIndex = 0;
-            this.LBLTimer.Text = "label1";
+            this.LBLTimer.Text = "00:00";
+            // 
+            // LBLMarbels
+            // 
+            this.LBLMarbels.AutoSize = true;
+            this.LBLMarbels.Location = new System.Drawing.Point(3, 13);
+            this.LBLMarbels.Name = "LBLMarbels";
+            this.LBLMarbels.Size = new System.Drawing.Size(73, 13);
+            this.LBLMarbels.TabIndex = 1;
+            this.LBLMarbels.Text = "Marbels: 0/32";
             // 
             // Form1
             // 
@@ -137,6 +148,7 @@
         private System.Windows.Forms.TableLayoutPanel MainLayoutParent;
         private System.Windows.Forms.TableLayoutPanel RightLayoutParent;
         private System.Windows.Forms.Label LBLTimer;
+        private System.Windows.Forms.Label LBLMarbels;
     }
 }
 

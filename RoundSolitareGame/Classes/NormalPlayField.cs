@@ -16,7 +16,7 @@ namespace RoundSolitareGame.Classes
 
         public override void PlayFieldAction(Board b)
         {
-            MessageBox.Show("Normal Action");
+            Played(b);
         }
     }
 }

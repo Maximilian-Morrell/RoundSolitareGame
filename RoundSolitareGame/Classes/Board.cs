@@ -13,9 +13,35 @@ namespace RoundSolitareGame.Classes
     {
         #region Variables
         private string _Name, _Description;
-        private int _Size, _SideRows, _SideLines, _UpDownLines, _UpDownRows, _MiddleSize, _Seconds;
+        private int _Size, _SideRows, _SideLines, _UpDownLines, _UpDownRows, _MiddleSize, _Seconds, _Marbels;
         private bool _Started;
+        private PlayField _SelectedPlayField;
         private List<PlayField> _PlayFields;
+        private int BtnID = 0;
+
+        public int Marbels
+        {
+            get
+            {
+                return _Marbels;
+            }
+            set
+            {
+                _Marbels = value;
+            }
+        }
+
+        public PlayField SelectedPlayField
+        {
+            get
+            {
+                return _SelectedPlayField;
+            }
+            set
+            {
+                _SelectedPlayField = value;
+            }
+        }
 
         public TimeSpan GetRoundTime
         {
@@ -223,7 +249,7 @@ namespace RoundSolitareGame.Classes
                         if(y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
                             // Top Buttons
-                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
+                            parent.Controls.Add(CreateButton(b, true, false), y, i);
                         }
                     }
                 }
@@ -234,7 +260,7 @@ namespace RoundSolitareGame.Classes
                         if(y < b.SideRows)
                         {
                             // Left Buttons
-                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
+                            parent.Controls.Add(CreateButton(b, true, false), y, i);
 
                         }
                         else if(y >= b.SideRows && y < b.SideRows + b.UpDownRows) 
@@ -242,19 +268,19 @@ namespace RoundSolitareGame.Classes
                             if(y == (b.Size - 1) / 2 && i == (b.Size + 1) / 2)
                             {
                                 // Center Center Button
-                                parent.Controls.Add(CreateButton(b, "" + y + i, false, false), y, i);
+                                parent.Controls.Add(CreateButton(b, false, false), y, i);
                             }
                             else
                             {
                                 // Middle Buttons
-                                parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
+                                parent.Controls.Add(CreateButton(b, true, false), y, i);
                             }
 
                         }
                         else if(y <= b.SideRows + b.UpDownRows + b.SideRows && y >= b.SideRows + b.UpDownRows)
                         {
                             // Right Buttons
-                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
+                            parent.Controls.Add(CreateButton(b, true, false), y, i);
                         }
                     }
                 }
@@ -265,7 +291,7 @@ namespace RoundSolitareGame.Classes
                         if (y >= b.SideRows && y < b.SideRows + b.UpDownRows)
                         {
                             // Bottom Buttons
-                            parent.Controls.Add(CreateButton(b, "" + y + i, true, false), y, i);
+                            parent.Controls.Add(CreateButton(b, true, false), y, i);
                         }
                     }
                 }
@@ -274,7 +300,7 @@ namespace RoundSolitareGame.Classes
             return parent;
         }
 
-        public static Button CreateButton(Board b, string ID, bool IsNormal, bool IsOutside)
+        public static Button CreateButton(Board b, bool IsNormal, bool IsOutside)
         {
             Button btn = new Button();
             btn.Width = 100;
@@ -283,10 +309,11 @@ namespace RoundSolitareGame.Classes
             // Checking if the generated Button is Normal
             if (IsNormal)
             {
-                NormalPlayField playField = new NormalPlayField(ID, btn);
+                NormalPlayField playField = new NormalPlayField(Convert.ToString(b.BtnID), btn);
                 b.PlayFields.Add(playField);
                 btn.Click += (e, a) => playField.PlayFieldAction(b);
                 btn.BackColor = Color.Red;
+                btn.Enabled = false;
             }
             else if(IsOutside)
             {
@@ -294,11 +321,12 @@ namespace RoundSolitareGame.Classes
             }
             else
             {
-                CenterPlayField playField = new CenterPlayField(ID, btn);
+                CenterPlayField playField = new CenterPlayField(Convert.ToString(b.BtnID), btn);
                 b.PlayFields.Add(playField);
                 btn.BackColor = Color.Yellow;
                 btn.Click += (e, a) => playField.PlayFieldAction(b);
             }
+            b.BtnID++;
             return btn;
         }
         #endregion

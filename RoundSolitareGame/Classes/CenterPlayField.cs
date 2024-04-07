@@ -20,10 +20,19 @@ namespace RoundSolitareGame.Classes
             if(!b.Started)
             {
                 b.StartRound();
+                Btn.Text = "";
+                Occupied = false;
+                foreach(PlayField field in b.PlayFields)
+                {
+                    field.Btn.Enabled = true;
+                    field.Btn.BackColor = Color.Green;
+                }
+                Btn.Enabled = false;
+                Btn.BackColor = Color.Red;
             }
             else
             {
-
+                Played(b);
             }
         }
     }
